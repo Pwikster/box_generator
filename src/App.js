@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import React, {useState} from 'react'
 import './App.css';
+import BoxForm from './components/BoxForm';
+import DisplayBox from './components/DisplayBox';
+
+//TODO add state and function for retreiving box size and color
 
 function App() {
+  const [currentBoxes, setCurrentBoxes] = useState([])
+
+  const addBox = (box) => {
+    setCurrentBoxes([...currentBoxes, box])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BoxForm addBox={ addBox }/>
+      <DisplayBox boxes={ currentBoxes } />
     </div>
   );
 }
